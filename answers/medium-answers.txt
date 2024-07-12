@@ -1,0 +1,19 @@
+1.In ruby, everything is an Object, which is the base class. Enumerable is an object that can be looped over or worked on as a set. All other objects listed except String (Array, Hash, Set) are Enumerables.
+Array is a simple enumerable that can store any list of objects, great for general use like sorting, however, can be inefficient for lookups or continuously calculating values like the min or max of an array. 
+Hash is a map data structure that allows a list of key-value pairs to be stored, usually implemented as an array of linked lists where lookups are done using a hash key. Hash are great for tracking information in-memory, lookups are very efficient.
+Sets are similar to Hash in their efficient lookup, however it’s a list of unique objects not key-value pairs.
+Strings represents text, strings can be looped over but are not an Enumerable.
+
+2. All are Enumerable methods that take a block of code to return or modify elements of the Enumerable. 
+find_all returns the elements that matches a condition.
+map will perform an operation on all elements of the Enumerable.
+reduce will combine elements of an Enumerable using an operation.
+reject will filter out elements of an Enumerable based on a condition.
+
+3. React is useful for a few reasons:
+- React forces a uni-direction flow. Which is, activity happens in Views, which causes an Action, the Action mutates State, and when State is mutated the View is re-rendered.
+- React also uses a virtual DOM to handle updates. State mutation can cause expensive DOM updates. React helps with this by using a virtual DOM. 
+When there is a change, React will generate a diff between the current virtual DOM and the new incoming virtual DOM. React will then only apply the diff to the real DOM to make the update cheaper.
+
+4. General performance improvements on the client side can be made by minification and by using a CDN.
+There are many general improvements that can be made on the backend depending on the use case. I would recommend having great Observability with Tracing to determine which parts of the system are not performing well.

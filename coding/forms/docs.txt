@@ -1,0 +1,33 @@
+For this design, my goal was to keep it simple and extensible. The tables are straightforward. The interesting part is how the forms and submissions are stored. I decided on storing the entire structure in JSON. For example: 
+{
+  "title": "Health Check",
+  "elements": [
+    {
+      "id": "current_weight",
+      "type": "number",
+      "label": "Current Weight",
+      "required": true,
+      "min": 20,
+      "max": 300
+    },
+    {
+      "id": "stress_level",
+      "type": "select",
+      "label": "Current Stress Level",
+      "options": [
+        {"value": "low", "label": "Low"},
+        {"value": "medium", "label": "Medium"},
+        {"value": "high", "label": "High"}
+      ],
+      "required": true
+    }
+  ]
+}
+
+This allows additional elements to be added without schema updates which can be expensive on large tables.
+
+The responses are similar. Here is an example JSON for the form above:
+{
+  "current_weight": 75,
+  "stress_level": "medium"
+}

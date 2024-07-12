@@ -1,0 +1,103 @@
+Important note: Please do not use chat.openai.com or other AI text generators for any of
+your responses. You may use search engines or other research tools, if you do please
+indicate this next to each response. Utilizing these tools will result in disqualification.
+Please do NOT include the node_modules directory in your submission.
+Short answer
+
+Answer with something like 1–4 sentences. We aren't looking for a precise technical
+definition. Answer in a way that you think is relevant to your software engineering work. If
+you don't know an answer, don't copy/paste from the web - just give whatever info you
+know.
+1. What is HTML?
+2. What is CSS?
+3. What is the DOM?
+4. What is memory?
+5. What is TCP/IP?
+6. In a programming language, what is a class?
+7. In a database, what is a foreign key?
+8. What is Model View Controller?
+
+Medium answer
+
+● Describe these data types. What are their similarities and differences? We aren't
+looking for a perfect comparison matrix, just discuss what's interesting and useful
+about each type. (this list uses terminology from ruby): Array, Enumerable, Hash,
+Object, Set, String
+● Describe these functions, and how some of them relate to one another (this list
+uses terminology from ruby): find_all, map, reduce, reject
+● Describe why React is useful, and any thoughts on pros or cons you might have.
+● If you wanted to improve the performance of a web app you were working on, what
+are some things you would look at / try?
+
+Coding
+For these challenges, you may write any code you wish in order to implement your
+answer. Please provide code in a runnable file, with some instructions in comments at the
+top for how to run it.
+
+Prime Number Finder
+Write a function that looks for prime numbers for a certain amount of time. When that
+amount of time has elapsed, it prints the largest prime number it found, and then returns
+nil. invoked like this to run for 5 seconds: find_prime_number(5)
+
+Class design
+Create classes Cat, Dog, Chicken, CatFood, DogFood, HumanFood, Lemons
+● a cat likes CatFood, Chicken, and Milk
+● a dog likes DogFood, CatFood, Chicken, HumanFood
+● a Cat can meow and a Dog can bark (print "meow" or "bark" to STDOUT)
+● when an animal eats food it likes, it makes a noise three times
+● when an animal eats food it dislikes, it makes a noise one time
+You can implement this any way you like, with whatever api you think makes sense.
+Include a driver file which requires the files, instantiates the classes, and invokes the
+methods to demonstrate the functionality.
+
+Database Schema Design
+Healthie is a platform which health and wellness providers use to provide services for
+their clients. We want to create a new feature which allows providers to create forms for
+their clients to fill out. Using a drag-and-drop interface, they can create a type of form
+which will then be filled out by multiple clients.
+We want to support these types of form elements:
+● text field
+
+● select fields
+● radio buttons
+● checkboxes
+Design the database schema you would use to implement this feature. The schema
+should support both
+● providers creating multiple types of forms which any client can fill out
+● clients filling out a form with answers
+
+Database and model design with queries
+We want to model providers (e.g. dietitians), their clients, and journal entries.
+● Both providers and clients have a name and an email address.
+● Providers have many clients
+● Clients usually have one Provider but can have more than one.
+● Clients have a plan that they paid for, signified by the string "basic" or "premium".
+For each provider that a client is signed up with, they have 1 plan.
+● Clients post journal entries. These consist of freeform text.
+We want to be able to do these queries:
+● Find all clients for a particular provider
+● Find all providers for a particular client
+● Find all of a particular client's journal entries, sorted by date posted
+● Find all of the journal entries of all of the clients of a particular provider, sorted by
+date posted
+Using ActiveRecord, Django, or another system you enjoy using, create the classes and
+schema migrations for this, including indexes.
+Show how to do each of the queries listed above.
+If you are torn between multiple approaches, just choose one to implement and explain
+the other approach and what the pros and cons of each might be.
+
+JS/React/CSS
+If you are a React coder, use React. Otherwise, code in the JS framework of your choice.
+Make a frontend-only todo list app.
+● It has three vertical lists. Todo, Doing, and Done
+
+● Items are created via a form (they can be stored in browser state, no need to have
+a backend)
+● Items are draggable from one list to another
+● Items can be reordered within a list
+● When you drag an item into the Done list, confetti explodes on the screen! Or
+something else interesting. You can use a package for this.
+● Overall the app has a usable design with a unique color palette. You are free to
+make whatever UI and UX decisions you want to make it usable. Don't worry, we
+aren't looking for a groundbreaking innovative design. Just lay things out decently
+and add some colors.

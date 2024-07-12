@@ -1,0 +1,149 @@
+<!-- To run, load file in a browser -->
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List App</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/react-beautiful-dnd/dist/react-beautiful-dnd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+    }
+    #root {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    form {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    input {
+      flex-grow: 1;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px 0 0 4px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+    .lists {
+      display: flex;
+      justify-content: space-between;
+    }
+    .list {
+      flex: 1;
+      margin: 0 10px;
+      padding: 10px;
+      background-color: #e1e5e9;
+      border-radius: 4px;
+    }
+    h2 {
+      color: #333;
+      text-align: center;
+    }
+    .item {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: grab;
+    }
+    .item:active {
+      cursor: grabbing;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+    const { DragDropContext, Droppable, Draggable } = window.ReactBeautifulDnd;
+    
+    const App = () => {
+      const [items, setItems] = useState({ Todo: [], Doing: [], Done: [] });
+      const [input, setInput] = useState('');
+      
+      const onDragEnd = (result) => {
+        if (!result.destination) return;
+        const { source, destination } = result;
+        const newItems = { ...items };
+        const [reorderedItem] = newItems[source.droppableId].splice(source.index, 1);
+        newItems[destination.droppableId].splice(destination.index, 0, reorderedItem);
+        setItems(newItems);
+        if (destination.droppableId === 'Done' && source.droppableId !== 'Done') {
+          var scalar = 2;
+          var pineapple = confetti.shapeFromText({ text: '🍍', scalar });
+          
+          confetti({
+            shapes: [pineapple],
+            scalar
+          });
+        }
+      };
+      
+      const addItem = (e) => {
+        e.preventDefault();
+        if (!input.trim()) return;
+        setItems({ ...items, Todo: [...items.Todo, input] });
+        setInput('');
+      };
+      
+      return (
+      <div className="app">
+        <form onSubmit={addItem}>
+          <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Add new item" />
+          <button type="submit">Add</button>
+        </form>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div className="lists">
+            {Object.entries(items).map(([listId, listItems]) => (
+              <Droppable key={listId} droppableId={listId}>
+                {(provided) => (
+                  <div {...provided.droppableProps} ref={provided.innerRef} className="list">
+                    <h2>{listId}</h2>
+                    {listItems.map((item, index) => (
+                      <Draggable key={item} draggableId={item} index={index}>
+                        {(provided) => (
+                          <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className="item"
+                          >
+                          {item}
+                          </div>
+                        )}
+                      </Draggable>
+                      ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            ))}
+          </div>
+        </DragDropContext>
+      </div>
+      );
+    };
+          
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>

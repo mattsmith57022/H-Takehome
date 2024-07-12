@@ -1,0 +1,8 @@
+1. HTML is a markup language that allows users to create structures using elements. Most widely used to structure web pages.
+2. CSS is a language that allows users to create visual styles for HTML elements.
+3. DOM is the HTML elements in a tree data structure which is used by the Browser.
+4. Memory is volatile space used by the operating system.
+5. TCP/IP are networking protocols. TCP is used by HTTP.
+6. A class is a blueprint for an object.
+7. A foreign key is a reference to a column in another table.
+8. MVC is a popular Web Application architecture that facilitates a modularized setup. Model represents the business resource, View allows users to get and modify the business resource and the Controller is the only public interface to allow Models to be obtained and modified.
